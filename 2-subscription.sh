@@ -1,8 +1,18 @@
+#!/bin/bash
+. ~/.bashrc
+
+if [ ! -r .access-token ]; then
+    red No token
+    exit 1
+fi
+
+ACCESS_TOKEN=$(jq  --raw-output --monochrome-output '.access_token' < .access-token)
+
 # create subscription
 curl --location --request POST 'http://sergey-lozhkin.ssf.bugfocus.com/statsapi/subscription' \
 --header 'Content-Type: application/json;charset=UTF-8' \
 --header 'Accept: application/json, text/plain, */*' \
---header 'Authorization: Bearer '$(cat .access-token) \
+--header 'Authorization: Bearer '"$ACCESS_TOKEN" \
 --data-raw '{
     "1": {
         "agent_grids": [
