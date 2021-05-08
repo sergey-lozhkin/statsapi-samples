@@ -4,9 +4,7 @@ while true; do
     date
     curl -sS --location --request GET 'http://sergey-lozhkin.ssf.bugfocus.com/statsapi/subscription/data' \
     --header 'Content-Type: application/json' \
-    --cookie 'cookies.curl' \
+    --header 'Authorization: Bearer '$(cat .access-token) \
     | jq -c
-    sleep 5
+    sleep 1
 done
-
-    # --header 'Authorization: Bearer 9583E1C4-5408-4E58-A8DC-996A0E78AB89' \

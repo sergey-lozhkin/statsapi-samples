@@ -1,16 +1,8 @@
 # obtain token
-curl --location --request POST 'http://sergey-lozhkin.ssf.bugfocus.com/statsapi/auth' \
---header 'Content-Type: application/json' \
---cookie-jar 'cookies.curl' \
---data-raw '{
-    "tenant_url": "clientweb",
-    "username": "edna.partee",
-    "password": "password"
-}'
-
-# --header 'Authorization: Bearer 9C545245-3B5C-4F9D-A1A4-AA497AA92AD0' \
-# {
-#   "token" : "6F6DB542-8F98-44B8-BCC0-C7738F5BCACD",
-#   "privileges" : [ "PUSH_PULL_GLOBAL_WALLBOARDS", "CUSTOMIZE_WALLBOARDS", "SYS_USE_AGENT_SEAT_MAPS" ],
-#   "user_id" : "F6CBFBA9-2824-4B20-B9B1-BF4B5D520EF4"
-# }
+curl --location --request POST 'http://sergey-lozhkin.ssf.bugfocus.com/configapi/v2/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=edna.partee' \
+--data-urlencode 'client_secret=xRbptklwSRSBg0kZ71xJJ4flNa2sfeX50uzYKiafl7iru2E3ZRD8B8OAEeAQ2zeb' \
+--data-urlencode 'scope=clientweb' \
+--data-urlencode 'grant_type=client_credentials' \
+| jq -rM '.access_token' > .access-token
