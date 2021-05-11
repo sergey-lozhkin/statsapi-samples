@@ -1,11 +1,12 @@
 #!/bin/bash
 . ~/.bashrc
+. 0-params.sh
 
-# obtain token
-curl --location --request POST 'http://sergey-lozhkin.ssf.bugfocus.com/configapi/v2/oauth/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=edna.partee' \
---data-urlencode 'client_secret=xRbptklwSRSBg0kZ71xJJ4flNa2sfeX50uzYKiafl7iru2E3ZRD8B8OAEeAQ2zeb' \
---data-urlencode 'scope=clientweb' \
---data-urlencode 'grant_type=client_credentials' \
-> .access-token
+$CURL \
+    --request POST "${BASE_URL}/configapi/v2/oauth/token" \
+    --header "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode "grant_type=client_credentials" \
+    --data-urlencode "scope=${SCOPE}" \
+    --data-urlencode "client_id=${CLIENT_ID}" \
+    --data-urlencode "client_secret=${CLIENT_SECRET}" \
+    > "${TOKEN_FILE}"
