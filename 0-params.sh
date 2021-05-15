@@ -1,5 +1,5 @@
-CURL='curl --location --silent --show-error'
-# set -x; CURL='curl --location --trace-ascii %'
+# CURL='curl --location --silent --show-error'
+set -x; CURL='curl --location --trace-ascii %'
 
 BASE_URL="http://sergey-lozhkin.ssf.bugfocus.com"
 SCOPE="clientweb"
